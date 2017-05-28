@@ -1,135 +1,49 @@
 #!/bin/bash
-set -uex
+set -ue
+if [[ ${KWM_PROFILE_DEBUG:+1} ]] ; then
+  set -x
+fi
 
 # configurations
 BASE_DIR=/Users/${USER}/.kwm
+LIBS_DIR=${BASE_DIR}/libs
 PROFILE_DIR=${BASE_DIR}/profiles
 KWM_CONFIG_TEMPLATE=${BASE_DIR}/kwmrc.tmpl
 KHD_CONFIG_TEMPLATE=${BASE_DIR}/khdrc.tmpl
 KWM_CONFIG_FILE=${BASE_DIR}/kwmrc
 KHD_CONFIG_FILE=/Users/${USER}/.khdrc
-AVAILABLE_PROFILES=$(find $PROFILE_DIR -type l|xargs -L1 basename |cut -d'.' -f1 |uniq |xargs)
+VALID_PROFILES=$(find $PROFILE_DIR -type f -or -type l -name '*.sh' -exec basename {} \; |cut -d'.' -f1|xargs)
+
+source ${LIBS_DIR}/kwm_functions.sh
 
 # usage
 function usage {
-  echo -e "usage: $0 <profile>\n"
-  echo "available profiles:"
-  for prof in ${AVAILABLE_PROFILES}; do
-    echo "- ${prof}"
-  done
-}
-
-# notify via system notification everything passed to the function
-function notify {
-  MESSAGE=$@
-  terminal-notifier -title kwm -sender com.apple.systempreferences -message $"${MESSAGE}"
-}
-
-# write .khdrc and .kwm/kwmrc file using a simple variable switching
-function write_tmpl {
-  PROFILE=$1
-  sed "s/__PROFILE__/${PROFILE}.kwm/g" ${KWM_CONFIG_TEMPLATE} | tee ${KWM_CONFIG_FILE} > /dev/null
-  cat ${KHD_CONFIG_TEMPLATE} ${PROFILE_DIR}/${PROFILE}.khd | tee ${KHD_CONFIG_FILE} > /dev/null
-}
-
-# stop khd
-function stop_khd {
-  killall -9 khd >/dev/null 2>&1
-  brew services stop khd >/dev/null 2>&1
-}
-
-# stop kwm
-function stop_kwm {
-  brew services stop kwm >/dev/null 2>&1
-}
-
-# restart khd
-function restart_khd {
-  khd -e "reload" >/dev/null 2>&1 || brew services start khd >/dev/null 2>&1
-}
-
-# restart kwm
-function restart_kwm {
-  brew services restart kwm >/dev/null 2>&1
-}
-
-# stop shiftit
-function stop_shiftit {
-  if [ -n "$(pgrep ShiftIt)" ]; then
-    killall -9 ShiftIt >/dev/null 2>&1
-  fi
-}
-
-# start shiftit
-function start_shiftit {
-  if [ -z "$(pgrep ShiftIt)" ]; then
-    open /Applications/ShiftIt.app
-  fi
-}
-
-# check if the profile selected have khd and kwm templates in the template's folder
-function is_profile_valid {
-  PROFILE=$1
-  for prof in ${AVAILABLE_PROFILES}; do
-    if [ "${prof}" == "$1" ]; then
-      VALID_PROFILE=true
-      return 0
-    fi
-  done
-  return 1
-}
-
-function identify_spaces {
-  if [ -x ${PROFILE_DIR}/${1}.sh ]; then
-    ${PROFILE_DIR}/$1.sh
-  fi
-}
-
-# main switch: if profile is "float", than we stop kwm and khd and start shiftit
-# in any other case we stop shiftit, rewrite khd and kwm config files and restart them
-function main {
-  PROFILE=$1
-  MESSAGE=""
-  MESSAGE+="switch to profile ${PROFILE}, "
-  write_tmpl ${PROFILE}
-  if [ "${PROFILE}" == "float" ]; then
-    MESSAGE+="stopping kwm, "
-    stop_kwm
-    MESSAGE+="starting shiftit, "
-    start_shiftit
-  else
-    MESSAGE+="stopping shiftit, "
-    stop_shiftit
-    MESSAGE+="starting kwm, "
-    restart_kwm
-  fi
-  MESSAGE+="reloading khd and dock."
-  restart_khd
-  killall Dock
-
-  # run space identification to allow quick window switch
-  identify_spaces ${PROFILE}
-
-  # notify status
-  notify "${MESSAGE}"
+  echo "usage: $0 <profile>"
+  echo "Usable profiles:"
+  pretty_profiles ${VALID_PROFILES}
 }
 
 # command line argument check
-# if no arguments are passed
-if [ $# -eq 0 ]; then
-  CURRENT_PROFILE=$(cat ${KWM_CONFIG_FILE} |grep include|cut -d'/' -f2 |cut -d'.' -f1)
-  echo ${CURRENT_PROFILE}
-  exit 0
-elif [ $# -eq 1 ]; then
-  PROFILE=$1
-  # check if profile is valid
-  if ! $(is_profile_valid ${PROFILE}); then
+case $# in
+  0) # if no arguments are passed detect the current profile and print it
+    current_profile=$(cat ${KWM_CONFIG_FILE} |grep include|cut -d'/' -f2 |cut -d'.' -f1)
+    echo ${current_profile}
+    exit 0
+  ;;
+  1) # if there is an argument it must be a valid profile.
+    PROFILE=${1}
+    if [[ "${VALID_PROFILES}" =~ "${PROFILE}" ]]; then
+      switch_profile ${PROFILE}
+      exit 0
+    else
+      echo "No such profile '${PROFILE}'."
+      echo "Usable profiles:"
+      pretty_profiles ${VALID_PROFILES}
+      exit 1
+    fi
+  ;;
+  *)
     usage
-    exit 1
-  fi
-  main ${PROFILE}
-  exit 0
-else
-  usage
-  exit 1
-fi
+    exit 2
+  ;;
+esac

@@ -1,4 +1,4 @@
-command: "$HOME/.kwm/kwm-profile"
+command: "$HOME/.bin/kwm-profile"
 
 refreshFrequency: 60000 # ms
 
