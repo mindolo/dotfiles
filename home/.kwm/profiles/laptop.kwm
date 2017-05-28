@@ -35,21 +35,21 @@ kwmc config space 0 10 name "email" # cmd-4
 kwmc config space 0 11 name "misc_bsp" # cmd-5
 kwmc config space 0 12 name "misc_float" # cmd-6
 
-# Configure little display to be monocle
+# Configure builtin display to be monocle
 kwmc config space 0 1 mode bsp # cmd-escape
 kwmc config space 0 2 mode monocle # cmd-f1
-kwmc config space 0 3 mode bsp # cmd-f2
+kwmc config space 0 3 mode monocle # cmd-f2
 kwmc config space 0 4 mode bsp # cmd-f3
 kwmc config space 0 5 mode monocle # cmd-f4
 kwmc config space 0 6 mode monocle # cmd-f5
 kwmc config space 0 7 mode monocle # cmd-1
-kwmc config space 0 8 mode bsp # cmd-2
+kwmc config space 0 8 mode monocle # cmd-2
 kwmc config space 0 9 mode bsp # cmd-3 
-kwmc config space 0 10 mode bsp # cmd-4
+kwmc config space 0 10 mode monocle # cmd-4
 kwmc config space 0 11 mode bsp # cmd-5
-kwmc config space 0 12 mode float # cmd-6
+kwmc config space 0 12 mode monocle # cmd-6
 
-# Configure little display padding
+# Configure builtin display padding
 kwmc config space 0 1 padding 22 22 3 3
 kwmc config space 0 2 padding 23 23 3 3
 kwmc config space 0 3 padding 26 26 3 3
@@ -66,27 +66,37 @@ kwmc config space 0 12 padding 26 26 3 3
 # Main window placement
 # terminal cmd-escape
 kwmc rule owner="iTerm2" name=".*Default*" except=".*irc.*" properties={display="0"; space="1"}
+
 # personal_irc cmd-f1
 kwmc rule owner="iTerm2" name=".*irc.*" except=".*Default.*" properties={display="0"; space="2"}
+
 # personal_web cmd-f2
 kwmc rule owner="Chromium" properties={display="0"; space="3"}
+
 # auth cmd-f3
 kwmc rule owner="Cisco.*" properties={display="0"; space="4"}
 kwmc rule owner="Awsaml" properties={display="0"; space="4"}
-kwmc rule name="QtPass" properties={display="0"; space="4"}
+kwmc rule owner="QtPass" properties={display="0"; space="4"}
+
 # calendar cmd-f4
-kwmc rule name="Gcalendar.*" properties={display="0"; space="10"}
+kwmc rule owner="Gcalendar" properties={display="0"; space="5"}
+
 # conference cmd-f5
-kwmc rule owner="Fuze" properties={display="0"; space="6"} 
+kwmc rule owner="Fuze" properties={display="0"; space="6"}
+
 # work_irc cmd-1
 kwmc rule owner="Slack" properties={display="0"; space="7"}
+
 # work_web cmd-2
 kwmc rule owner="Google.*Chrome" properties={display="0"; space="8"}
+
 # development cmd-3
 kwmc rule owner="Emacs" properties={display="0"; space="9"}
+
 # email cmd-4
 kwmc rule owner="Microsoft.*Outlook" properties={display="0"; space="10"}
-kwmc rule name="Inbox.*" properties={display="0"; space="10"}
+kwmc rule owner="Inbox" properties={display="0"; space="10"}
+
 # misc_bsp cmd-5
 # misc_float # cmd-6
 

@@ -14,10 +14,10 @@ kwmc config spawn right
 ############################
 # Displays / Spaces config #
 #                          #
-# |-------|--------|       #
-# |   1   |   0    |-----| #
-# |       |        |  2  | #
-# |-------|--------|-----| #
+#      |-------|           #
+#      |   1   |-----|     #
+#      |       |  0  |     #
+#      |_______|_____|     #
 #                          #
 ############################
 
@@ -26,10 +26,12 @@ kwmc config space 1 1 name "terminal"
 kwmc config space 1 2 name "calendar"
 kwmc config space 1 3 name "mutt"
 kwmc config space 1 4 name "phone"
+
 kwmc config space 0 1 name "personal_web"
 kwmc config space 0 2 name "r7_web"
-kwmc config space 0 3 name "outlook"
+kwmc config space 0 3 name "email"
 kwmc config space 0 4 name "various1"
+
 kwmc config space 2 1 name "personal_irc"
 kwmc config space 2 2 name "r7_irc"
 kwmc config space 2 3 name "chime"

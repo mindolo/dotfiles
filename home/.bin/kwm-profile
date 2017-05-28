@@ -80,7 +80,9 @@ function is_profile_valid {
 }
 
 function identify_spaces {
-  ${PROFILE_DIR}/$1.sh
+  if [ -x ${PROFILE_DIR}/${1}.sh ]; then
+    ${PROFILE_DIR}/$1.sh
+  fi
 }
 
 # main switch: if profile is "float", than we stop kwm and khd and start shiftit
