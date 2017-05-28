@@ -1,0 +1,49 @@
+#!/bin/zsh
+PATH=/usr/sbin:/usr/bin:/bin:/usr/local/bin
+
+seconds=$1
+if [ -z "$seconds" ]; then
+  seconds=2.8
+else
+  shift
+fi
+
+[ -z "$*" ] && set "en0"
+
+initial_bytes_in=()
+initial_bytes_out=()
+subsequent_bytes_in=()
+subsequent_bytes_out=()
+
+for interface in $*; do
+   b=`netstat -ibI $interface | awk '$3 ~ /Link/ { print $7, $10 }'`
+   if [ -z "$b" ]; then
+      initial_bytes_in+=(0)
+      initial_bytes_out+=(0)
+   else
+      initial_bytes_in+=(`echo $b | cut -f 1 -d " "` )
+      initial_bytes_out+=(`echo $b | cut -f 2 -d " "` )
+   fi
+   unset b
+done
+
+sleep $seconds
+
+for interface in $*; do
+   b=`netstat -ibI $interface | awk '$3 ~ /Link/ { print $7, $10 }'`
+   if [ -z "$b" ]; then
+      subsequent_bytes_in+=(0)
+      subsequent_bytes_out+=(0)
+   else
+      subsequent_bytes_in+=(`echo $b | cut -f 1 -d " "` )
+      subsequent_bytes_out+=(`echo $b | cut -f 2 -d " "` )
+   fi
+   unset b
+done
+
+for i in {1..$#*}; do
+	 input=$(echo "scale=2; ($subsequent_bytes_in[$i] - $initial_bytes_in[$i])/$seconds" | bc 2>/dev/null)
+	 output=$(echo "scale=2; ($subsequent_bytes_out[$i] - $initial_bytes_out[$i])/$seconds" | bc 2>/dev/null)
+   gnumfmt --to=iec --format="%.0f" --padding=-2 --field=1,2 <<<"$input $output"
+done
+

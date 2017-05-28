@@ -1,0 +1,92 @@
+# Default tiling mode for Kwm (bsp | monocle | float)
+kwmc config tiling bsp
+
+# Automatically float windows that fail to resize
+kwmc config float-non-resizable on
+
+# Automatically resize the window to its container
+kwmc config lock-to-container on
+
+# Set focus-follows-mouse-mode to autoraise
+kwmc config focus-follows-mouse on
+
+# Focus-follows-mouse is temporarily disabled when
+# a floating window has focus
+kwmc config standby-on-float on
+
+# Center window when made floating
+kwmc config center-on-float on
+
+# The mouse will automatically move to the center
+# of the focused window
+kwmc config mouse-follows-focus on
+
+# Allows a window to be resized by dragging
+# when a modifier key and right-click is held down.
+kwmc config mouse-drag on
+
+# The modifier keys to be held down to initiate mouse-drag
+kwmc config mouse-drag mod ctrl+shift
+
+# Allow window focus to wrap-around
+kwmc config cycle-focus on
+
+# Set default container split-ratio
+kwmc config split-ratio 0.5
+
+# New splits become the left leaf-node
+kwmc config spawn right
+
+# Enable border for focused window
+kwmc config border focused size 2
+kwmc config border focused on
+kwmc config border focused color 0xFF6495ED
+kwmc config border focused radius 8
+
+# Enable border for marked window
+kwmc config border marked size 2
+kwmc config border marked on
+kwmc config border marked color 0xFFCC5577
+kwmc config border marked radius 8
+
+#################
+# App whitelist #
+#################
+kwmc whitelist iTerm2
+kwmc whitelist Übersicht
+kwmc whitelist Alfred 3
+kwmc whitelist Karabiner-Elements
+kwmc whitelist Microsoft Outlook
+
+##################
+# Windows config #
+##################
+
+# Need to be marked AXDialog
+kwmc rule owner="iTerm2" properties={role="AXDialog"}
+kwmc rule owner="Cisco.*" properties={role="AXDialog"}
+kwmc rule owner="Outlook" properties={role="AXStandardWindow"}
+
+# Need to be marked AXStandardWindow
+kwmc rule owner="Emacs" properties={role="AXStandardWindow"}
+
+
+# Floating windows
+kwmc rule owner="Finder" properties={float="true"}
+kwmc rule owner="Alfred.*" properties={float="true"}
+kwmc rule owner="System.*Preferences" properties={float="true"}
+kwmc rule owner="Activity.*Monitor" properties={float="true"}
+kwmc rule owner="Preview" properties={float="true"}
+kwmc rule owner="VimR" properties={float="true"}
+kwmc rule owner="Neovim" properties={float="true"}
+kwmc rule owner="Cisco.*" properties={float="true"}
+kwmc rule owner="Karabiner.*" properties={float="true"}
+kwmc rule owner="Contacts" properties={float="true"}
+kwmc rule owner="GIMP" properties={float="true"}
+#kwmc rule name="QtPass" properties={float="true"}
+#kwmc rule owner="Awsaml" properties={float="true"}
+
+############
+# Profiles #
+############
+include profiles/__PROFILE__

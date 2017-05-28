@@ -1,0 +1,28 @@
+# Space Movements
+# Move Focus to Space
+cmd - f18   :  kwmc space -fExperimental terminal
+cmd - f1    :  kwmc space -fExperimental personal_irc
+cmd - f2    :  kwmc space -fExperimental personal_web
+cmd - f3    :  kwmc space -fExperimental auth
+cmd - f4    :  kwmc space -fExperimental calendar
+cmd - f5    :  kwmc space -fExperimental conference
+cmd - 1     :  kwmc space -fExperimental work_irc
+cmd - 2     :  kwmc space -fExperimental work_web
+cmd - 3     :  kwmc space -fExperimental development
+cmd - 4     :  kwmc space -fExperimental email
+cmd - 5     :  kwmc space -fExperimental misc_bsp
+cmd - 6     :  kwmc space -fExperimental misc_float
+
+# Move Focused Window To Space
+cmd + ctrl + alt - f18    :  kwmc window -m space terminal
+cmd + ctrl + alt - f1     :  kwmc window -m space personal_irc
+cmd + ctrl + alt - f2     :  kwmc window -m space personal_web
+cmd + ctrl + alt - f3     :  kwmc window -m space auth
+cmd + ctrl + alt - f4     :  kwmc window -m space calendar
+cmd + ctrl + alt - f5     :  kwmc window -m space conference
+cmd + ctrl + alt - 1      :  kwmc window -m space work_irc
+cmd + ctrl + alt - 2      :  kwmc window -m space work_web
+cmd + ctrl + alt - 3      :  kwmc window -m space development
+cmd + ctrl + alt - 4      :  kwmc window -m space email
+cmd + ctrl + alt - 5      :  kwmc window -m space misc_bsp
+cmd + ctrl + alt - 6      :  kwmc window -m space misc_float

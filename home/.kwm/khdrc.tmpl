@@ -1,0 +1,106 @@
+# Enable kwm compatibility mode
+khd kwm on
+
+# set color of default mode
+khd mode default color 0xFFD5C4A1
+
+# Quit Kwm
+cmd + alt + ctrl - q                     :    kwmc quit
+
+# Restart Kwm
+cmd + alt + ctrl - r                     :    brew services restart kwm
+
+# Start screensaver
+ctrl + shift - f12                       :    m screensaver
+
+# Query current profile
+ctrl + shift - p                         :    $HOME/.bin/kwm-profile
+
+# Select laptop profile
+ctrl + shift - l                         :    $HOME/.bin/kwm-profile laptop
+
+# Select 3monitors profile
+ctrl + shift - m                         :    $HOME/.bin/kwm-profile 3monitors
+
+# Select all float profile
+ctrl + shift - f                         :    $HOME/.bin/kwm-profile float
+
+# Set Space Tiling Mode To BSP
+shift + cmd + ctrl + alt - b             :    kwmc space -t bsp
+
+# Set Space Tiling Mode To Monocle
+shift + cmd + ctrl + alt - m             :    kwmc space -t monocle
+
+# Set Space Tiling Mode To Floating
+shift + cmd + ctrl + alt - n             :    kwmc space -t float
+
+# Rotate Window-Tree By 90degrees (Clockwise)
+shift + cmd + ctrl + alt - r             :    kwmc tree rotate 90
+
+# Launch iTerm2
+cmd - return                             :    osascript $HOME/.kwm/scripts/iterm.scpt
+
+# Launch irc
+shift + cmd + ctrl + alt - i             :    osascript $HOME/.kwm/scripts/irc.scpt
+
+# Launch Finder
+shift + cmd + ctrl + alt - space         :    osascript $HOME/.kwm/scripts/finder.scpt
+
+# Make window full screen
+shift + cmd + ctrl + alt - f             :    kwmc window -z fullscreen
+
+# Become parent
+shift + cmd + ctrl + alt - d             :    kwmc window -z parent
+
+# Toggle floating
+shift + cmd + ctrl + alt - s             :    kwmc window -t focused
+
+# Refocus windows
+shift + cmd + ctrl + alt - a             :    kwmc space -r focused
+
+# Give Focus To Window
+shift + cmd + ctrl + alt - up            :    kwmc window -f north
+shift + cmd + ctrl + alt - down          :    kwmc window -f south
+shift + cmd + ctrl + alt - left          :    kwmc window -f prev
+shift + cmd + ctrl + alt - right         :    kwmc window -f next
+
+# Shrink windows
+ctrl + alt - left                        :   kwmc window -c expand 0.05 west
+ctrl + alt - down                        :   kwmc window -c expand 0.05 south
+ctrl + alt - up                          :   kwmc window -c expand 0.05 north
+ctrl + alt - right                       :   kwmc window -c expand 0.05 east
+
+# Expand windows
+cmd + ctrl + alt - right                 :    kwmc window -c reduce 0.05 west
+cmd + ctrl + alt - down                  :    kwmc window -c reduce 0.05 north
+cmd + ctrl + alt - up                    :    kwmc window -c reduce 0.05 south
+cmd + ctrl + alt - left                  :    kwmc window -c reduce 0.05 east
+
+# Mark Window
+cmd + alt + ctrl - m                     :    kwmc window -mk focused
+cmd + alt + ctrl - h                     :    kwmc window -mk west wrap
+cmd + alt + ctrl - l                     :    kwmc window -mk east wrap
+cmd + alt + ctrl - j                     :    kwmc window -mk south wrap
+cmd + alt + ctrl - k                     :    kwmc window -mk north wrap
+
+# Swap Focused Window
+ctrl + alt - h           :    kwmc window -s west
+ctrl + alt - j           :    kwmc window -s north
+ctrl + alt - k           :    kwmc window -s south
+ctrl + alt - l           :    kwmc window -s east
+ctrl + alt - m           :    kwmc window -s mark
+
+# Pseudo containers
+cmd + ctrl + alt - p     :    kwmc tree -pseudo create
+cmd + ctrl + alt - o     :    kwmc tree -pseudo destroy
+ctrl + alt - p           :    kwmc window -s prev
+ctrl + alt - n           :    kwmc window -s next
+
+# Detach Focused Window And Reinsert In Direction
+ctrl + shift - k         :    kwmc window -m north
+ctrl + shift - l         :    kwmc window -m east
+ctrl + shift - j         :    kwmc window -m south
+ctrl + shift - h         :    kwmc window -m west
+
+# Detach Marked Window And Reinsert At Focused Window
+ctrl + shift - x         :    kwmc window -m mark

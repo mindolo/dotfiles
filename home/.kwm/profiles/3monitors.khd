@@ -1,0 +1,28 @@
+# Movements
+# Move Focus to Space
+cmd - escape  :  kwmc display -f 1; sleep 0.3; kwmc space -fExperimental terminal
+cmd - f1      :  kwmc display -f 2; sleep 0.3; kwmc space -fExperimental personal_irc
+cmd - f2      :  kwmc display -f 0; sleep 0.3; kwmc space -fExperimental personal_web
+cmd - f3      :  kwmc display -f 2; sleep 0.3; kwmc space -fExperimental phone
+cmd - f4      :  kwmc display -f 1; sleep 0.3; kwmc space -fExperimental calendar
+cmd - f5      :  kwmc display -f 1; sleep 0.3; kwmc space -fExperimental various1
+cmd - 1       :  kwmc display -f 2; sleep 0.3; kwmc space -fExperimental r7_irc
+cmd - 2       :  kwmc display -f 0; sleep 0.3; kwmc space -fExperimental r7_web
+cmd - 3       :  kwmc display -f 2; sleep 0.3; kwmc space -fExperimental chime
+cmd - 4       :  kwmc display -f 0; sleep 0.3; kwmc space -fExperimental outlook
+cmd - 5       :  kwmc display -f 1; sleep 0.3; kwmc space -fExperimental auth
+cmd - 6       :  kwmc display -f 0; sleep 0.3; kwmc space -fExperimental various2
+
+# Move Focused Window To Space
+cmd + ctrl + alt - escape:  kwmc window -m display 1; kwmc window -m space terminal
+cmd + ctrl + alt - f1    :  kwmc window -m display 2; kwmc window -m space personal_irc
+cmd + ctrl + alt - f2    :  kwmc window -m display 0; kwmc window -m space personal_web
+cmd + ctrl + alt - f3    :  kwmc window -m display 2; kwmc window -m space phone
+cmd + ctrl + alt - f4    :  kwmc window -m display 1; kwmc window -m space calendar
+cmd + ctrl + alt - f5    :  kwmc window -m display 1; kwmc window -m space various1
+cmd + ctrl + alt - 1     :  kwmc window -m display 2; kwmc window -m space r7_irc
+cmd + ctrl + alt - 2     :  kwmc window -m display 0; kwmc window -m space r7_web
+cmd + ctrl + alt - 3     :  kwmc window -m display 2; kwmc window -m space chime
+cmd + ctrl + alt - 4     :  kwmc window -m display 0; kwmc window -m space outlook
+cmd + ctrl + alt - 5     :  kwmc window -m display 1; kwmc window -m space mutt
+cmd + ctrl + alt - 6     :  kwmc window -m display 0; kwmc window -m space various2
