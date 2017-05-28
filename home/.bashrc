@@ -14,7 +14,8 @@ fi
 # add ~/.bin/ to $PATH
 export PATH=~/.bin:$PATH
 
-# force ignoredups and ignorespace                                                                                   export HISTCONTROL=ignoreboth
+# force ignoredups and ignorespace
+export HISTCONTROL=ignoreboth
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -54,6 +55,6 @@ alias reload='source ~/.bashrc'
 
 # If this is an interactive shell and the submodule is present
 # source also liquidprompt
-if [ -r ~/.bash//liquidprompt/liquidprompt ]; then
+if [ -r ~/.bash/liquidprompt/liquidprompt ]; then
     [[ $- == *i* ]]   &&   . ~/.bash/liquidprompt/liquidprompt
 fi
