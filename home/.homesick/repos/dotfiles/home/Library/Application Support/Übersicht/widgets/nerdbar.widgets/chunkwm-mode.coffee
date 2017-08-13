@@ -1,31 +1,30 @@
-command: "$HOME/.bin/chunkwm-query -w"
+command: "$HOME/.bin/chunkwm-query -p"
 
-refreshFrequency: 1000
+refreshFrequency: 60000 # ms
 
 render: (output) ->
   """
-  <div class="foc"
+  <div class="chunkwm-mode"
     <span></span>
     <span class="icon"></span>
   </div>
   """
 
 update: (output, el) ->
-    $(".foc span:first-child", el).text("  #{output}")
-    $icon = $(".foc span.icon", el)
+    $(".chunkwm-mode span:first-child", el).text(" LALALALALA #{output}")
+    $icon = $(".chunk-mode span.icon", el)
     $icon.removeClass().addClass("icon")
-    $icon.addClass("fa fa-bullseye")
+    $icon.addClass("fa fa-laptop")
 
 style: """
-  position: absolute
-  text-align: center
   font-family: Inconsolata-dz
   -webkit-font-smoothing: antialiased
+  text-overflow: ellipsis
   color: #d3d3d3
   font: 13px Input
   height: 16px
+  left: 10px
   overflow: hidden
-  text-overflow: ellipsis
   bottom: 3px
-  width: 100%
+  width: auto
 """

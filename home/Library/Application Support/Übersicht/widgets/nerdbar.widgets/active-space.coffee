@@ -1,4 +1,4 @@
-command: "/usr/local/bin/kwmc query space active name"
+command: "$HOME/.bin/chunkwm-query -d"
 
 refreshFrequency: 1000
 

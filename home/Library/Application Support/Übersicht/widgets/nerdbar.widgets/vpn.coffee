@@ -1,4 +1,4 @@
-command: "/usr/local/bin/ip a |grep utun0 || echo 'none'"
+command: "/usr/local/bin/ip a |grep utun1 || echo 'none'"
 
 refreshFrequency: 30000 # ms
 

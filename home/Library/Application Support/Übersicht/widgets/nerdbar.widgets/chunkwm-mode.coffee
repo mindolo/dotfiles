@@ -1,20 +1,20 @@
-command: "$HOME/.bin/kwm-profile"
+command: "$HOME/.bin/chunkwm-query -p"
 
 refreshFrequency: 60000 # ms
 
 render: (output) ->
   """
-  <div class="kwm-mode"
+  <div class="chunkwm-mode"
     <span></span>
     <span class="icon"></span>
   </div>
   """
 
 update: (output, el) ->
-    $(".kwm-mode span:first-child", el).text("  #{output}")
-    $icon = $(".kwm-mode span.icon", el)
+    $(".chunkwm-mode span:first-child", el).text("  #{output}")
+    $icon = $(".chunkwm-mode span.icon", el)
     $icon.removeClass().addClass("icon")
-    $icon.addClass("fa fa-laptop")
+    $icon.addClass("fa fa-desktop")
 
 style: """
   font-family: Inconsolata-dz

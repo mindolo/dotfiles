@@ -1,6 +1,6 @@
 command: "$HOME/.bin/net-stats"
 
-refreshFrequency: 5000 # ms
+refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
@@ -17,25 +17,8 @@ update: (output, el) ->
     $icon.addClass("fa fa-cloud-download")
 
 display: (output) =>
-    console.log(output)
-    usage = (bytes) ->
-        kb = bytes / 1024
-        usageFormat kb
-
-    usageFormat = (kb) ->
-        if kb > 1024
-            mb = kb / 1024
-            "#{parseInt(mb.toFixed(1))} M"
-        else
-            "#{parseInt(kb.toFixed(2))} K"
-
     args = output.split " "
-
-    downBytes = (Number) args[0]
-    upBytes = (Number) args[1]
-
-    return output
-
+    return "⬇︎" + args[0] + " ⬆︎"+args[1]
 
 style: """
   font-family: Inconsolata-dz

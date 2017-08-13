@@ -1,0 +1,115 @@
+#!/bin/bash
+ 
+######################
+# plugins setup
+######################
+# plugin dir
+chunkc core::plugin_dir ~/.chunkwm_plugins
+ 
+# hot plugin reload
+chunkc core::hotload 1
+ 
+######################
+# tiling setup
+######################
+# global desktop mode
+chunkc set global_desktop_mode           bsp
+ 
+chunkc set 1_desktop_mode bsp # terminal
+chunkc set 2_desktop_mode bsp # personal_irc
+chunkc set 3_desktop_mode bsp # personal_web
+chunkc set 4_desktop_mode float # misc_float
+chunkc set 5_desktop_mode bsp # misc_bsp 
+chunkc set 6_desktop_mode bsp # conference
+chunkc set 7_desktop_mode bsp # auth
+chunkc set 8_desktop_mode bsp # work_irc
+chunkc set 9_desktop_mode bsp # work_web
+chunkc set 10_desktop_mode bsp # development
+chunkc set 11_desktop_mode bsp # email
+chunkc set 12_desktop_mode bsp # calendar
+
+# desktop trees
+# chunkc set 1_desktop_tree                ~/.chunkwm_layouts/terminal
+ 
+# desktop offsets
+chunkc set global_desktop_offset_top     26
+chunkc set global_desktop_offset_bottom  26
+chunkc set global_desktop_offset_left    3
+chunkc set global_desktop_offset_right   3
+chunkc set global_desktop_offset_gap     4
+ 
+# padding and gap steps size
+chunkc set desktop_padding_step_size     10.0
+chunkc set desktop_gap_step_size         10.0
+ 
+# golden rules
+chunkc set bsp_spawn_left                0
+chunkc set bsp_optimal_ratio             1.618
+chunkc set bsp_split_mode                optimal
+chunkc set bsp_split_ratio               0.5
+ 
+# focus options
+chunkc set window_focus_cycle            monitor
+chunkc set mouse_follows_focus           1
+chunkc set window_float_next             0
+chunkc set window_float_center           1
+chunkc set window_region_locked          1
+ 
+# signal dock to make windows topmost when floated
+# requires chwm-sa (https://github.com/koekeishiya/chwm-sa)
+chunkc set window_float_topmost          1
+ 
+######################
+# border setup
+######################
+chunkc set focused_border_color          0xff6495ed
+chunkc set focused_border_width          4
+chunkc set focused_border_radius         4
+chunkc set focused_border_skip_floating  1
+
+######################
+# transparency setup
+######################
+# enable fading of windows that are not in focus
+chunkc set window_fade_inactive 1
+# the target alpha value for faded windows
+chunkc set window_fade_alpha 0.85
+# the amount of time in seconds the fade should last
+chunkc set window_fade_duration 0
+
+######################
+# loaded plugins
+######################
+chunkc core::load border.so
+chunkc core::load tiling.so
+chunkc core::load ffm.so
+chunkc core::load transparency.so 
+
+######################
+# window rules
+######################
+# floating windows
+chunkc tiling::rule --owner \"System.\*Preferences\" --state float
+chunkc tiling::rule --owner Finder --state float
+chunkc tiling::rule --owner \"Activity.\*Monitor\" --state float
+
+#chunkc tiling::rule --owner \"Cisco.\*\" --state float
+chunkc tiling::rule --owner \"Karabiner.\*\" --state float
+chunkc tiling::rule --owner \"GIMP.\*\" --state float
+chunkc tiling::rule --owner \"Accessibility.\*Inspector\" --state float
+
+# tiled windows
+chunkc tiling::rule --owner Emacs --state tile
+ 
+# sticky windows
+chunkc tiling::rule --name personal_irc --desktop 2
+chunkc tiling::rule --owner Chromium --desktop 3
+chunkc tiling::rule --owner QtPass --desktop 7
+chunkc tiling::rule --owner Awsaml --desktop 7
+chunkc tiling::rule --owner \"Cisco.\*\" --desktop 7
+chunkc tiling::rule --owner GCalendar --desktop 12
+chunkc tiling::rule --owner Fuze --desktop 6
+chunkc tiling::rule --owner Slack  --desktop 8
+chunkc tiling::rule --owner \"Google.\*Chrome\" --desktop 9
+chunkc tiling::rule --owner Emacs --desktop 10
+chunkc tiling::rule --owner Inbox --desktop 11

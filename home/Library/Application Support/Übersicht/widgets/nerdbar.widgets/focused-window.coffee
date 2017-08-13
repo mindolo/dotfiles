@@ -1,4 +1,4 @@
-command: "echo $(/usr/local/bin/kwmc query space active tag)"
+command: "$HOME/.bin/chunkwm-query -w"
 
 refreshFrequency: 1000
 
