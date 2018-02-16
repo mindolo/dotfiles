@@ -1,13 +1,25 @@
 #!/bin/bash
+
+
+
+chunkc core::log_file stdout
+chunkc core::log_level debug
+
  
 ######################
 # plugins setup
 ######################
 # plugin dir
-chunkc core::plugin_dir ~/.chunkwm_plugins
+chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
  
 # hot plugin reload
 chunkc core::hotload 1
+
+# unload plugins (usefull when reloading)
+chunkc core::unload tiling.so
+chunkc core::unload border.so
+chunkc core::unload ffm.so
+chunkc core::unload purify.so
  
 ######################
 # tiling setup
@@ -73,7 +85,7 @@ chunkc set focused_border_skip_floating  1
 # enable fading of windows that are not in focus
 chunkc set window_fade_inactive 1
 # the target alpha value for faded windows
-chunkc set window_fade_alpha 0.85
+chunkc set window_fade_alpha 0.9
 # the amount of time in seconds the fade should last
 chunkc set window_fade_duration 0
 
@@ -83,7 +95,6 @@ chunkc set window_fade_duration 0
 chunkc core::load border.so
 chunkc core::load tiling.so
 chunkc core::load ffm.so
-chunkc core::load transparency.so 
 
 ######################
 # window rules
@@ -92,14 +103,12 @@ chunkc core::load transparency.so
 chunkc tiling::rule --owner \"System.\*Preferences\" --state float
 chunkc tiling::rule --owner Finder --state float
 chunkc tiling::rule --owner \"Activity.\*Monitor\" --state float
-
-#chunkc tiling::rule --owner \"Cisco.\*\" --state float
 chunkc tiling::rule --owner \"Karabiner.\*\" --state float
 chunkc tiling::rule --owner \"GIMP.\*\" --state float
 chunkc tiling::rule --owner \"Accessibility.\*Inspector\" --state float
 
 # tiled windows
-chunkc tiling::rule --owner Emacs --state tile
+chunkc tiling::rule --owner Emacs --except "^$" --state tile
  
 # sticky windows
 chunkc tiling::rule --name personal_irc --desktop 2
@@ -108,6 +117,7 @@ chunkc tiling::rule --owner QtPass --desktop 7
 chunkc tiling::rule --owner Awsaml --desktop 7
 chunkc tiling::rule --owner \"Cisco.\*\" --desktop 7
 chunkc tiling::rule --owner GCalendar --desktop 12
+chunkc tiling::rule --owner Calendar --desktop 12
 chunkc tiling::rule --owner Fuze --desktop 6
 chunkc tiling::rule --owner Slack  --desktop 8
 chunkc tiling::rule --owner \"Google.\*Chrome\" --desktop 9

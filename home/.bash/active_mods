@@ -2,6 +2,7 @@
 markpath
 ssh-agent
 homeshick
-z
+fasd
 completions
 go
+chtf

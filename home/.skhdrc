@@ -1,20 +1,22 @@
 # Enable kwm compatibility mode
+
+# Swap Focused Window
 #khd kwm on
 
 # set color of default mode
 #khd mode default color 0xFFD5C4A1
 
-# Quit Kwm
-#cmd + alt + ctrl - q                     :    kwmc quit
+# Quit Chunkwm
+hyper - q                     :    brew services stopchunkwm
 
 # Restart khd
-cmd + alt + ctrl - r                     :    brew services restart khd
+cmd + alt + ctrl - r                     :    brew services restart skhd
 
 # Start screensaver
-#ctrl + shift - f12                       :    m screensaver
+ctrl + shift - f12                       :    m screensaver
 
 # Query current profile
-shift + cmd + ctrl + alt + a             :    brew services restart chunkwm
+hyper - r             :    brew services restart chunkwm
 
 # Select laptop profile
 #ctrl + shift - l                         :    $HOME/.bin/kwm-profile laptop
@@ -25,33 +27,35 @@ shift + cmd + ctrl + alt + a             :    brew services restart chunkwm
 # Select all float profile
 #ctrl + shift - f                         :    $HOME/.bin/kwm-profile float
 
+cmd + alt -r          : bash $HOME/.chunkwmrc
+
 # Set Space Tiling Mode To BSP
-shift + cmd + ctrl + alt - b             :    chunkc tiling::desktop --layout bsp
+hyper - b             :    chunkc tiling::desktop --layout bsp
 
 # Set Space Tiling Mode To Monocle
-shift + cmd + ctrl + alt - m             :    chunkc tiling::desktop --layout monocle
+hyper - m             :    chunkc tiling::desktop --layout monocle
 
 # Set Space Tiling Mode To Floating
-shift + cmd + ctrl + alt - n             :    chunkc tiling::desktop --layout float
+hyper - n             :    chunkc tiling::desktop --layout float
 
 # Rotate Window-Tree By 90degrees (Clockwise)
-shift + cmd + ctrl + alt - r             :    chunkc tiling::desktop --rotate 90
+hyper - r             :    chunkc tiling::desktop --rotate 90
 
 # Launch iTerm2
 cmd - return                             :    osascript $HOME/.chunkwm/scripts/iterm.scpt
 
 # Launch irc
-shift + cmd + ctrl + alt - i             :    osascript $HOME/.chunkwm/scripts/irc.scpt
+hyper - i             :    osascript $HOME/.chunkwm/scripts/irc.scpt
 
 # Launch Finder
-shift + cmd + ctrl + alt - space         :    osascript $HOME/.chunkwm/scripts/finder.scpt
+hyper - space         :    osascript $HOME/.chunkwm/scripts/finder.scpt
 
 # Make window full screen
-shift + cmd + ctrl + alt - f             :    chunkc tiling::window --toggle fullscreen
+hyper - f             :    chunkc tiling::window --toggle fullscreen
 cmd + ctrl + alt - f                     :    chunkc tiling::window --toggle native-fullscreen
 
 # Become parent
-#shift + cmd + ctrl + alt - d             :    kwmc window -z parent
+hyper - d : chunkc tiling::window --toggle parent
 
 # Toggle floating
 #shift + cmd + ctrl + alt - s             :    kwmc window -t focused
@@ -69,13 +73,14 @@ shift + cmd + alt - right         :    chunkc tiling::window --focus east
 cmd + alt - left                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
 cmd + alt - up                    :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
 cmd + alt - down                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-cms + alt - right                 :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+cmd + alt - right                 :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
  
 # Expand windows
 cmd + alt + ctrl - right          :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
 cmd + alt + ctrl - up             :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
 cmd + alt + ctrl - down           :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
 cmd + alt + ctrl - left           :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+
 
 # Swap Focused Window
 ctrl + alt - h           :   chunkc tiling::window --swap west
@@ -84,18 +89,35 @@ ctrl + alt - k           :   chunkc tiling::window --swap south
 ctrl + alt - l           :   chunkc tiling::window --swap east
 ctrl + alt - m           :   chunkc tiling::window --swap kwmc window -s mark
 
+# Pseudo containers
+cmd + ctrl + alt - p     :    kwmc tree -pseudo create
+cmd + ctrl + alt - o     :    kwmc tree -pseudo destroy
+ctrl + alt - p           :    kwmc window -s prev
+ctrl + alt - n           :    kwmc window -s next
+
+# Detach Focused Window And Reinsert In Direction
+ctrl + shift - k         :    kwmc window -m north
+ctrl + shift - l         :    kwmc window -m east
+ctrl + shift - j         :    kwmc window -m south
+ctrl + shift - h         :    kwmc window -m west
+
 # Detach Marked Window And Reinsert At Focused Window
 ctrl + shift - x         :    kwmc window -m mark
 
-cmd + ctrl + alt + shift - f18    : chunkc tiling::window --send-to-desktop 1  
-cmd + ctrl + alt + shift - f1     : chunkc tiling::window --send-to-desktop 2
-cmd + ctrl + alt + shift - f2     : chunkc tiling::window --send-to-desktop 3
-cmd + ctrl + alt + shift - f3     : chunkc tiling::window --send-to-desktop 4
-cmd + ctrl + alt + shift - f4     : chunkc tiling::window --send-to-desktop 5
-cmd + ctrl + alt + shift - f5     : chunkc tiling::window --send-to-desktop 6
-cmd + ctrl + alt + shift - 0x32   : chunkc tiling::window --send-to-desktop 7
-cmd + ctrl + alt + shift - 1      : chunkc tiling::window --send-to-desktop 8
-cmd + ctrl + alt + shift - 2      : chunkc tiling::window --send-to-desktop 9
-cmd + ctrl + alt + shift - 3      : chunkc tiling::window --send-to-desktop 10
-cmd + ctrl + alt + shift - 4      : chunkc tiling::window --send-to-desktop 11
-cmd + ctrl + alt + shift - 5      : chunkc tiling::window --send-to-desktop 12
+hyper - f18    : chunkc tiling::window --send-to-desktop 1  
+hyper - f1     : chunkc tiling::window --send-to-desktop 2
+hyper - f2     : chunkc tiling::window --send-to-desktop 3
+hyper - f3     : chunkc tiling::window --send-to-desktop 4
+hyper - f4     : chunkc tiling::window --send-to-desktop 5
+hyper - f5     : chunkc tiling::window --send-to-desktop 6
+hyper - 0x32   : chunkc tiling::window --send-to-desktop 7
+hyper - 1      : chunkc tiling::window --send-to-desktop 8
+hyper - 2      : chunkc tiling::window --send-to-desktop 9
+hyper - 3      : chunkc tiling::window --send-to-desktop 10
+hyper - 4      : chunkc tiling::window --send-to-desktop 11
+hyper - 5      : chunkc tiling::window --send-to-desktop 12
+
+
+# get my r7 password
+hyper - p      : pass rapid7/email -c && terminal-notifier -title Pass -message 'Password copied to clipboard. Will clear in 45 seconds'
+
