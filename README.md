@@ -11,4 +11,4 @@ PRs are open, but likely won't be merged.
 They will instead remain open to act as examples for whomever might 
 be interested.
 
-The only profile working and tested for kwm is `laptop`.
+The only profile working and tested for chunkwm is `laptop`.

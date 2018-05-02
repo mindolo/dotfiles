@@ -1,0 +1,16 @@
+{
+"laptop":
+{ "1": "terminal",
+  "2": "personal_irc",
+  "3": "personal_web",
+  "4": "misc_float",
+  "5": "misc_bsp",
+  "6": "conference",
+  "7": "auth",
+  "8": "work_irc",
+  "9": "work_web",
+  "10": "development",
+  "11": "email",
+  "12": "calendar"
+}
+}
