@@ -1,11 +1,5 @@
 #!/bin/bash
-
-
-
-chunkc core::log_file stdout
-chunkc core::log_level debug
-
- 
+# active_profile: laptop
 ######################
 # plugins setup
 ######################
@@ -44,8 +38,8 @@ chunkc set 12_desktop_mode bsp # calendar
 # chunkc set 1_desktop_tree                ~/.chunkwm_layouts/terminal
  
 # desktop offsets
-chunkc set global_desktop_offset_top     26
-chunkc set global_desktop_offset_bottom  26
+chunkc set global_desktop_offset_top     3
+chunkc set global_desktop_offset_bottom  3
 chunkc set global_desktop_offset_left    3
 chunkc set global_desktop_offset_right   3
 chunkc set global_desktop_offset_gap     4
@@ -70,7 +64,12 @@ chunkc set window_region_locked          1
 # signal dock to make windows topmost when floated
 # requires chwm-sa (https://github.com/koekeishiya/chwm-sa)
 chunkc set window_float_topmost          1
- 
+
+
+# mouse windows resizing/moving
+chunkc set mouse_resize_window fn 1
+chunkc set mouse_move_window fn 2
+
 ######################
 # border setup
 ######################
@@ -119,6 +118,7 @@ chunkc tiling::rule --owner \"Cisco.\*\" --desktop 7
 chunkc tiling::rule --owner GCalendar --desktop 12
 chunkc tiling::rule --owner Calendar --desktop 12
 chunkc tiling::rule --owner Fuze --desktop 6
+chunkc tiling::rule --owner \"zoom.us\" --desktop 6
 chunkc tiling::rule --owner Slack  --desktop 8
 chunkc tiling::rule --owner \"Google.\*Chrome\" --desktop 9
 chunkc tiling::rule --owner Emacs --desktop 10
