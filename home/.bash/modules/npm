@@ -1,0 +1,4 @@
+# Insert npm's dir in PATH if node is installed with npm
+if [ -f "${BREW_PREFIX}"/bin/npm ]; then
+   export PATH=/usr/local/share/npm/bin:$PATH
+fi

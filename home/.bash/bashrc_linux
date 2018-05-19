@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -7,7 +8,7 @@ fi
 
 #Load solarized color scheme
 if [ -r ~/.bash/colors/solarized/dircolors.256dark ]; then
-       eval `dircolors ~/.bash/colors/solarized/dircolors.256dark`
+       eval "$(dircolors ~/.bash/colors/solarized/dircolors.256dark)"
 fi
 
 #some colors

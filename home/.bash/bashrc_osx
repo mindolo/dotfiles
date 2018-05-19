@@ -1,24 +1,16 @@
+#!/usr/bin/env bash
 alias ls='ls -G'
 
-export BREW_PREFIX=$(brew --prefix)
+BREW_PREFIX=$(brew --prefix)
+export BREW_PREFIX
 
 #If present, use macvim from brew
 if [ -x "${BREW_PREFIX}"/bin/mvim ]; then
 
 	for prg in vim view vimdiff vimex
 	do
-		alias $prg="/usr/local/bin/m${prg} -v"
+		alias "$prg"="/usr/local/bin/m${prg} -v"
 	done
 	#ToDo: Either stop using 'vi' or find a better way to do this
 	alias vi="/usr/local/bin/mvim -v"
-fi
-
-# GRC configuration
-if [ -f "${BREW_PREFIX}"/etc/grc.bashrc ]; then
-    . "`brew --prefix grc`/etc/grc.bashrc"
-fi
-
-# Insert npm's dir in PATH if node is installed with npm
-if [ -f "${BREW_PREFIX}"/bin/npm ]; then
-   export PATH=/usr/local/share/npm/bin:$PATH
 fi

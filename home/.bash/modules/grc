@@ -1,0 +1,4 @@
+# GRC configuration
+if [ -f "${BREW_PREFIX}"/etc/grc.bashrc ]; then
+    . "$(brew --prefix grc)/etc/grc.bashrc"
+fi
