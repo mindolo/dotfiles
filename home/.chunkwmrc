@@ -1,19 +1,7 @@
 #!/bin/bash
-# active_profile: laptop
-######################
-# plugins setup
-######################
-# plugin dir
-chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
- 
-# hot plugin reload
-chunkc core::hotload 1
 
-# unload plugins (usefull when reloading)
-chunkc core::unload tiling.so
-chunkc core::unload border.so
-chunkc core::unload ffm.so
-chunkc core::unload purify.so
+# Logging
+chunkc core::log_file /tmp/chunkwm.log
  
 ######################
 # tiling setup
@@ -35,6 +23,22 @@ chunkc set 11_desktop_mode bsp # email
 chunkc set 12_desktop_mode bsp # calendar
 
 # desktop trees
+# active_profile: laptop
+######################
+# plugins setup
+######################
+# plugin dir
+chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
+ 
+# hot plugin reload
+chunkc core::hotload 1
+
+# unload plugins (usefull when reloading)
+chunkc core::unload tiling.so
+chunkc core::unload border.so
+chunkc core::unload ffm.so
+chunkc core::unload purify.so
+
 # chunkc set 1_desktop_tree                ~/.chunkwm_layouts/terminal
  
 # desktop offsets
@@ -99,27 +103,27 @@ chunkc core::load ffm.so
 # window rules
 ######################
 # floating windows
-chunkc tiling::rule --owner \"System.\*Preferences\" --state float
-chunkc tiling::rule --owner Finder --state float
-chunkc tiling::rule --owner \"Activity.\*Monitor\" --state float
-chunkc tiling::rule --owner \"Karabiner.\*\" --state float
-chunkc tiling::rule --owner \"GIMP.\*\" --state float
-chunkc tiling::rule --owner \"Accessibility.\*Inspector\" --state float
+chunkc tiling::rule --owner \"System.\*Preferences\" --state float &
+chunkc tiling::rule --owner Finder --state float &
+chunkc tiling::rule --owner \"Activity.\*Monitor\" --state float &
+chunkc tiling::rule --owner \"Karabiner.\*\" --state float &
+chunkc tiling::rule --owner \"GIMP.\*\" --state float &
+chunkc tiling::rule --owner \"Accessibility.\*Inspector\" --state float &
 
 # tiled windows
-chunkc tiling::rule --owner Emacs --except "^$" --state tile
+chunkc tiling::rule --owner Emacs --except "^$" --state tile &
  
 # sticky windows
-chunkc tiling::rule --name personal_irc --desktop 2
-chunkc tiling::rule --owner Chromium --desktop 3
-chunkc tiling::rule --owner QtPass --desktop 7
-chunkc tiling::rule --owner Awsaml --desktop 7
-chunkc tiling::rule --owner \"Cisco.\*\" --desktop 7
-chunkc tiling::rule --owner GCalendar --desktop 12
-chunkc tiling::rule --owner Calendar --desktop 12
-chunkc tiling::rule --owner Fuze --desktop 6
-chunkc tiling::rule --owner \"zoom.us\" --desktop 6
-chunkc tiling::rule --owner Slack  --desktop 8
-chunkc tiling::rule --owner \"Google.\*Chrome\" --desktop 9
-chunkc tiling::rule --owner Emacs --desktop 10
-chunkc tiling::rule --owner Inbox --desktop 11
+chunkc tiling::rule --name personal_irc --desktop 2 &
+chunkc tiling::rule --owner Chromium --desktop 3 &
+chunkc tiling::rule --owner QtPass --desktop 7 &
+chunkc tiling::rule --owner Awsaml --desktop 7 &
+chunkc tiling::rule --owner \"Cisco.\*\" --desktop 7 &
+chunkc tiling::rule --owner GCalendar --desktop 12 &
+chunkc tiling::rule --owner Calendar --desktop 12 &
+chunkc tiling::rule --owner Fuze --desktop 6 &
+chunkc tiling::rule --owner \"zoom.us\" --desktop 6 &
+chunkc tiling::rule --owner Slack  --desktop 8 &
+chunkc tiling::rule --owner \"Google.\*Chrome\" --desktop 9 &
+chunkc tiling::rule --owner Emacs --desktop 10 &
+chunkc tiling::rule --owner Inbox --desktop 11 &
