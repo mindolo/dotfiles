@@ -58,3 +58,5 @@ alias reload='source ~/.bashrc'
 if [ -r ~/.bash/liquidprompt/liquidprompt ]; then
     [[ $- == *i* ]]   &&   . ~/.bash/liquidprompt/liquidprompt
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

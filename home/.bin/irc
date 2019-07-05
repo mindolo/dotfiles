@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# /usr/bin/env bash
 #irssi_notifier > /dev/null 2>&1
 #set -x
 #export AUTOSSH_POLL=60
@@ -32,4 +32,4 @@
 source $HOME/.bash/modules/ssh-agent
 #weechat_notifier
 #sleep 100
-/usr/local/bin/mosh emma -- tmux a -d
+/usr/local/bin/mosh emma -- tmux a -t irc -d
