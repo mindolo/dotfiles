@@ -15,7 +15,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 
-CHUNKWMRC = os.path.join(os.path.expanduser('~'), '.chunkwmrc')
+YABAIRC = os.path.join(os.path.expanduser('~'), '.yabairc')
 KARABINERRC = os.path.join(os.path.expanduser('~'), '.config/karabiner/karabiner.json')
 DESKTOPSRC = os.path.join(os.path.expanduser('~'), '.chunkwm/desktops.json')
 
@@ -26,7 +26,7 @@ def read_file(path):
 
 
 def get_active_profile():
-    content = read_file(CHUNKWMRC)
+    content = read_file(YABAIRC)
     search = re.search(r"# active_profile: (\w+)", content)
     if search:
         return search.groups()[0]
@@ -83,7 +83,7 @@ else:
 print('---')
 print('Yabai: | color=#ffffff')
 print('profile:\t\t\t%s | color=#b0b0b0' % active_profile)
-print('window:\t\t\t%s | color=#b0b0b0' % active_window.get('title', 'No active window'))
+print('window:\t\t\t%s | color=#b0b0b0' % active_window.get('title', 'No active window').encode('utf8'))
 print('desktop:\t\t%s - %s (%s) | color=#b0b0b0' %
       (active_space['index'], active_desktop_name, active_space['type']))
 print('monitor:\t\t\t%s | color=#b0b0b0' % get_active_monitor()['index'])

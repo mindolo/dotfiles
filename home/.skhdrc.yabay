@@ -49,10 +49,10 @@ hyper - f             :    yabai -m window --toggle zoom-parent
 cmd + ctrl + alt - f                     :    yabai -m window --toggle native-fullscreen
 
 # Give Focus To Window
-shift + cmd + alt - up            :    chunkc tiling::window --focus north
-shift + cmd + alt - down          :    chunkc tiling::window --focus south
-shift + cmd + alt - left          :    chunkc tiling::window --focus west
-shift + cmd + alt - right         :    chunkc tiling::window --focus east
+shift + cmd + alt - up            :    yabai -m window --focus nort
+shift + cmd + alt - down          :    yabai -m window --focus south
+shift + cmd + alt - left          :    yabai -m window --focus west
+shift + cmd + alt - right         :    yabai -m window --focus east
 
 # Shrink windows
 cmd + alt - left                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
