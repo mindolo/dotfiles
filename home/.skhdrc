@@ -7,7 +7,7 @@
 #khd mode default color 0xFFD5C4A1
 
 # Quit Chunkwm
-hyper - q                     :    brew services stopchunkwm
+hyper - q                     :    brew services stop yabai
 
 # Restart khd
 cmd + alt + ctrl - r                     :    brew services restart skhd
@@ -16,7 +16,7 @@ cmd + alt + ctrl - r                     :    brew services restart skhd
 ctrl + shift - f12                       :    m screensaver
 
 # Query current profile
-hyper - r             :    brew services restart chunkwm
+hyper - r             :    brew services restart yabai
 
 # Select laptop profile
 #ctrl + shift - l                         :    $HOME/.bin/kwm-profile laptop
@@ -27,19 +27,13 @@ hyper - r             :    brew services restart chunkwm
 # Select all float profile
 #ctrl + shift - f                         :    $HOME/.bin/kwm-profile float
 
-cmd + alt -r          : bash $HOME/.chunkwmrc
+cmd + alt -r          : bash $HOME/.yabairc
 
 # Set Space Tiling Mode To BSP
-hyper - b             :    chunkc tiling::desktop --layout bsp
-
-# Set Space Tiling Mode To Monocle
-hyper - m             :    chunkc tiling::desktop --layout monocle
+hyper - b             :    yabai -m space --layout bsp
 
 # Set Space Tiling Mode To Floating
-hyper - n             :    chunkc tiling::desktop --layout float
-
-# Rotate Window-Tree By 90degrees (Clockwise)
-hyper - r             :    chunkc tiling::desktop --rotate 90
+hyper - n             :    yabai -m space --layout float
 
 # Launch iTerm2
 cmd - return                             :    osascript $HOME/.chunkwm/scripts/iterm.scpt
@@ -51,23 +45,14 @@ hyper - i             :    osascript $HOME/.chunkwm/scripts/irc.scpt
 hyper - space         :    osascript $HOME/.chunkwm/scripts/finder.scpt
 
 # Make window full screen
-hyper - f             :    chunkc tiling::window --toggle fullscreen
-cmd + ctrl + alt - f                     :    chunkc tiling::window --toggle native-fullscreen
-
-# Become parent
-hyper - d : chunkc tiling::window --toggle parent
-
-# Toggle floating
-#shift + cmd + ctrl + alt - s             :    kwmc window -t focused
-
-# Refocus space
-#shift + cmd + ctrl + alt - a             :    chunkc tiling::desktop --equalize
+hyper - f             :    yabai -m window --toggle zoom-parent
+cmd + ctrl + alt - f                     :    yabai -m window --toggle native-fullscreen
 
 # Give Focus To Window
-shift + cmd + alt - up            :    chunkc tiling::window --focus north
-shift + cmd + alt - down          :    chunkc tiling::window --focus south
-shift + cmd + alt - left          :    chunkc tiling::window --focus west
-shift + cmd + alt - right         :    chunkc tiling::window --focus east
+shift + cmd + alt - up            :    yabai -m window --focus nort
+shift + cmd + alt - down          :    yabai -m window --focus south
+shift + cmd + alt - left          :    yabai -m window --focus west
+shift + cmd + alt - right         :    yabai -m window --focus east
 
 # Shrink windows
 cmd + alt - left                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
@@ -104,18 +89,18 @@ ctrl + shift - h         :    kwmc window -m west
 # Detach Marked Window And Reinsert At Focused Window
 ctrl + shift - x         :    kwmc window -m mark
 
-hyper - f18    : chunkc tiling::window --send-to-desktop 1  
-hyper - f1     : chunkc tiling::window --send-to-desktop 2
-hyper - f2     : chunkc tiling::window --send-to-desktop 3
-hyper - f3     : chunkc tiling::window --send-to-desktop 4
-hyper - f4     : chunkc tiling::window --send-to-desktop 5
-hyper - f5     : chunkc tiling::window --send-to-desktop 6
-hyper - 0x32   : chunkc tiling::window --send-to-desktop 7
-hyper - 1      : chunkc tiling::window --send-to-desktop 8
-hyper - 2      : chunkc tiling::window --send-to-desktop 9
-hyper - 3      : chunkc tiling::window --send-to-desktop 10
-hyper - 4      : chunkc tiling::window --send-to-desktop 11
-hyper - 5      : chunkc tiling::window --send-to-desktop 12
+hyper - f18    : yabai -m window --space 1  
+hyper - f1     : yabai -m window --space 2
+hyper - f2     : yabai -m window --space 3
+hyper - f3     : yabai -m window --space 4
+hyper - f4     : yabai -m window --space 5
+hyper - f5     : yabai -m window --space 6
+hyper - 0x32   : yabai -m window --space 7
+hyper - 1      : yabai -m window --space 8
+hyper - 2      : yabai -m window --space 9
+hyper - 3      : yabai -m window --space 10
+hyper - 4      : yabai -m window --space 11
+hyper - 5      : yabai -m window --space 12
 
 
 # get my r7 password

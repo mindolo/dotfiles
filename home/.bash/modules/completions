@@ -1,3 +1,5 @@
-if [ -f "${BREW_PREFIX}"/etc/bash_completion ]; then
-    . "${BREW_PREFIX}"/etc/bash_completion
+if [ -d "${BREW_PREFIX}"/etc/bash_completion.d ]; then
+    for COMPLETION in "${BREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
 fi

@@ -1,35 +1,9 @@
-# /usr/bin/env bash
-#irssi_notifier > /dev/null 2>&1
-#set -x
-#export AUTOSSH_POLL=60
-#export AUTOSSH_PIDFILE=~/.irc_notifier
-#export AUTOSSH_PORT=0
-#
-#trap_handler() {
-#  pkill autossh
-#}
-#trap 'trap_handler ${LINENO} ${?}' EXIT ERR
-#
-#
-#weechat_notifier() {
-#
-#    # can't be bothered to keep the session open.
-#    echo "started!" > /tmp/weechat
-#    export AUTOSSH_PIDFILE
-#    (autossh  emma 'echo -n "" > ~/.weechat/highlights.txt; tail -f ~/.weechat/highlights.txt' | \
-#        while read heading message; do
-#            url=$(echo \"$message\" | grep -Eo 'https?://[^ >]+' | head -1);
-#
-#            if [ ! "$url" ]; then
-#                terminal-notifier -title "\"$heading\"" -message "\"$message\"";
-#            else
-#                terminal-notifier -title "\"$heading\"" -message "\"$message\"" -open "\"$url\"";
-#            fi;
-#        done)&
-#}
-#
-#export -f weechat_notifier
-source $HOME/.bash/modules/ssh-agent
-#weechat_notifier
-#sleep 100
+#!/usr/bin/env bash
+
+GPG_TTY=$(tty)
+export GPG_TTY
+/usr/local/bin/gpgconf --launch gpg-agent
+SSH_AUTH_SOCK=$(/usr/local/bin/gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK
+
 /usr/local/bin/mosh emma -- tmux a -t irc -d

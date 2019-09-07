@@ -1,6 +1,5 @@
 
 markpath
-ssh-agent
 homeshick
 fasd
 completions
@@ -8,4 +7,4 @@ go
 chtf
 grc
 npm
-chefdk
+gpg-agent

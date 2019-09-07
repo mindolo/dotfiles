@@ -59,8 +59,8 @@ set smartcase                                   " case insensitive search if all
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 """ Python Nvim Venvs
-let g:python_host_prog = '/Users/fpedrini/.virtualenvs/neovim2/bin/python'
-let g:python3_host_prog = '/Users/fpedrini/.virtualenvs/neovim3/bin/python'
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 """ ale config
 let g:ale_fix_on_save = 1
