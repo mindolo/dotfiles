@@ -11,6 +11,10 @@ if [ -e ${HOME}/.bash/functions.sh ]; then
     source ${HOME}/.bash/functions.sh
 fi
 
+# Load colors file
+if [ -e ${HOME}/.bash/bash_colors.sh ]; then
+    source ${HOME}/.bash/bash_colors.sh;
+fi
 # add ~/.bin/ to $PATH
 export PATH=~/.bin:$PATH
 

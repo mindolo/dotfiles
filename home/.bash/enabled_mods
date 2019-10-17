@@ -4,6 +4,7 @@ fasd
 completions
 go
 chtf
-grc
 npm
 gpg-agent
+asdf
+remindme

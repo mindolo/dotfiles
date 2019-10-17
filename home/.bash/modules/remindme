@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+REMINDER_CACHE="$HOME/.remindme"
+
+_sanitize_remind_cache() {
+    sed -i -e '/^$/d' "$REMINDER_CACHE"
+}
+
+remindme() {
+    if [ "$#" -lt 1 ]; then
+        list_remind
+        return 0
+    fi
+    remindme="$*"
+    echo "${remindme^}" >> "$REMINDER_CACHE"
+    echo "Remind added"
+    _sanitize_remind_cache
+}
+
+remove_remind() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: remove_remind <remind_id>"
+        return 1
+    fi
+    to_remove="$1"
+    if [ -z "$to_remove" ]; then
+        echo "remind_id must be an integer"
+        return 2
+    fi
+    sed -i -e "${to_remove}"'d' "$REMINDER_CACHE"
+    _sanitize_remind_cache
+}
+
+list_remind() {
+    _sanitize_remind_cache
+    if [ -s "$REMINDER_CACHE" ]; then
+        clr_bold clr_brown "Reminders for $USER:"
+        nl "$REMINDER_CACHE"
+    else
+        echo "Nothing to remind"
+    fi
+}
+list_remind
+
