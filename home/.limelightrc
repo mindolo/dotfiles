@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+limelight -m config width            1
+limelight -m config radius           0
+limelight -m config placement        interior
+limelight -m config active_color     0xff70a4ea
+limelight -m config normal_color     0xff1f244c
+
+echo "limelight configuration loaded.."

@@ -1,108 +1,93 @@
-# Enable kwm compatibility mode
+# Quit yabai
+hyper - q : brew services stop yabai
 
-# Swap Focused Window
-#khd kwm on
-
-# set color of default mode
-#khd mode default color 0xFFD5C4A1
-
-# Quit Chunkwm
-hyper - q                     :    brew services stop yabai
-
-# Restart khd
-cmd + alt + ctrl - r                     :    brew services restart skhd
+# Restart reload skhd
+cmd + alt + ctrl - r : skhd --reload
 
 # Start screensaver
 ctrl + shift - f12                       :    m screensaver
 
-# Query current profile
-hyper - r             :    brew services restart yabai
+hyper - r : brew services restart yabai
 
-# Select laptop profile
-#ctrl + shift - l                         :    $HOME/.bin/kwm-profile laptop
-
-# Select 3monitors profile
-#ctrl + shift - m                         :    $HOME/.bin/kwm-profile 3monitors
-
-# Select all float profile
-#ctrl + shift - f                         :    $HOME/.bin/kwm-profile float
-
-cmd + alt -r          : bash $HOME/.yabairc
+cmd + alt -r : bash $HOME/.yabairc
 
 # Set Space Tiling Mode To BSP
-hyper - b             :    yabai -m space --layout bsp
+hyper - b : yabai -m space --layout bsp
 
 # Set Space Tiling Mode To Floating
-hyper - n             :    yabai -m space --layout float
+hyper - n : yabai -m space --layout float
 
 # Launch iTerm2
-cmd - return                             :    osascript $HOME/.chunkwm/scripts/iterm.scpt
+cmd - return : osascript $HOME/.chunkwm/scripts/iterm.scpt
 
 # Launch irc
-hyper - i             :    osascript $HOME/.chunkwm/scripts/irc.scpt
-
+#hyper - i : osascript $HOME/.chunkwm/scripts/irc.scpt
+hyper - i : alacritty -e $HOME/.bin/irc
 # Launch Finder
-hyper - space         :    osascript $HOME/.chunkwm/scripts/finder.scpt
+hyper - space : osascript $HOME/.chunkwm/scripts/finder.scpt
 
 # Make window full screen
 hyper - f             :    yabai -m window --toggle zoom-parent
-cmd + ctrl + alt - f                     :    yabai -m window --toggle native-fullscreen
+cmd + ctrl + alt - f  :    yabai -m window --toggle native-fullscreen
 
-# Give Focus To Window
-shift + cmd + alt - up            :    yabai -m window --focus nort
-shift + cmd + alt - down          :    yabai -m window --focus south
-shift + cmd + alt - left          :    yabai -m window --focus west
-shift + cmd + alt - right         :    yabai -m window --focus east
+## Give Focus To Window
+#hyper - h : yabai -m window --focus west
+#hyper - j : yabai -m window --focus south
+#hyper - k : yabai -m window --focus north
+#hyper - l : yabai -m window --focus east
+#
+## Swap Focused Window
+#yabai -m window --swap north
+#ctrl + alt - h : yabai -m window --swap west 
+#ctrl + alt - j : yabai -m window --swap south 
+#ctrl + alt - k : yabai -m window --swap north
+#ctrl + alt - l : yabai -m window --swap east
 
-# Shrink windows
-cmd + alt - left                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
-cmd + alt - up                    :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
-cmd + alt - down                  :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-cmd + alt - right                 :    chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
- 
-# Expand windows
-cmd + alt + ctrl - right          :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
-cmd + alt + ctrl - up             :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
-cmd + alt + ctrl - down           :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
-cmd + alt + ctrl - left           :    chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+# focus window
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# swap window
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+
+# move window
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - j : yabai -m window --warp south
+shift + cmd - k : yabai -m window --warp north
+shift + cmd - l : yabai -m window --warp east
 
 
-# Swap Focused Window
-ctrl + alt - h           :   chunkc tiling::window --swap west
-ctrl + alt - j           :   chunkc tiling::window --swap north
-ctrl + alt - k           :   chunkc tiling::window --swap south
-ctrl + alt - l           :   chunkc tiling::window --swap east
-ctrl + alt - m           :   chunkc tiling::window --swap kwmc window -s mark
+# make floating window fill screen
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 
-# Pseudo containers
-cmd + ctrl + alt - p     :    kwmc tree -pseudo create
-cmd + ctrl + alt - o     :    kwmc tree -pseudo destroy
-ctrl + alt - p           :    kwmc window -s prev
-ctrl + alt - n           :    kwmc window -s next
+# make floating window fill left-half of screen
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 
-# Detach Focused Window And Reinsert In Direction
-ctrl + shift - k         :    kwmc window -m north
-ctrl + shift - l         :    kwmc window -m east
-ctrl + shift - j         :    kwmc window -m south
-ctrl + shift - h         :    kwmc window -m west
+# make floating window fill right-half of screen
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
-# Detach Marked Window And Reinsert At Focused Window
-ctrl + shift - x         :    kwmc window -m mark
+# Rebalance space
+hyper - a : yabai -m space --balance
 
-hyper - f18    : yabai -m window --space 1  
-hyper - f1     : yabai -m window --space 2
-hyper - f2     : yabai -m window --space 3
-hyper - f3     : yabai -m window --space 4
-hyper - f4     : yabai -m window --space 5
-hyper - f5     : yabai -m window --space 6
-hyper - 0x32   : yabai -m window --space 7
-hyper - 1      : yabai -m window --space 8
-hyper - 2      : yabai -m window --space 9
-hyper - 3      : yabai -m window --space 10
-hyper - 4      : yabai -m window --space 11
-hyper - 5      : yabai -m window --space 12
+hyper - f18  : yabai -m window --space 1  
+hyper - f1   : yabai -m window --space 2
+hyper - f2   : yabai -m window --space 3
+hyper - f3   : yabai -m window --space 4
+hyper - f4   : yabai -m window --space 5
+hyper - f5   : yabai -m window --space 6
+hyper - 0x32 : yabai -m window --space 7
+hyper - 1    : yabai -m window --space 8
+hyper - 2    : yabai -m window --space 9
+hyper - 3    : yabai -m window --space 10
+hyper - 4    : yabai -m window --space 11
+hyper - 5    : yabai -m window --space 12
 
 
 # get my r7 password
-hyper - p      : pass rapid7/email -c && terminal-notifier -title Pass -message 'Password copied to clipboard. Will clear in 45 seconds'
+hyper - p      : gopass -c rapid7/email -c && terminal-notifier -title Gopass -message 'Password copied to clipboard. Will clear in 45 seconds'
 
