@@ -8,3 +8,5 @@ npm
 gpg-agent
 asdf
 remindme
+k3d
+kubectl

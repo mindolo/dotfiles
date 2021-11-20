@@ -22,7 +22,7 @@ cmd - return : osascript $HOME/.chunkwm/scripts/iterm.scpt
 
 # Launch irc
 #hyper - i : osascript $HOME/.chunkwm/scripts/irc.scpt
-hyper - i : alacritty -e $HOME/.bin/irc
+hyper - i : kitty $HOME/.bin/irc
 # Launch Finder
 hyper - space : osascript $HOME/.chunkwm/scripts/finder.scpt
 

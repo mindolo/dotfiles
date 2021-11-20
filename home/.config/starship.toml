@@ -1,0 +1,27 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]      # The name of the module we are configuring is "character"
+#success_symbol = "[\\$](green)"     # The "symbol" segment is being set to "➜"
+#error_symbol = "[\\$](bold red)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[aws]
+style = "bold blue"
+symbol = "🅰 "
+disabled = true
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+style = "bold white"
+
+[kubernetes]
+disabled=true
+
+[kubernetes.context_aliases]
+"arn:aws:eks:us-east-1:042293964381:cluster/aslicensing-test-1" = "ASLicensing - Dev"

@@ -57,10 +57,16 @@ bash_load_modules
 # Add a global reload alias to reload the configuration
 alias reload='source ~/.bashrc'
 
-# If this is an interactive shell and the submodule is present
-# source also liquidprompt
-if [ -r ~/.bash/liquidprompt/liquidprompt ]; then
-    [[ $- == *i* ]]   &&   . ~/.bash/liquidprompt/liquidprompt
-fi
 
+# If this is an interactive shell load a prompt
+if [[ $- == *i* ]]; then
+    if command -v starship >/dev/null 2>&1; then
+        eval "$(starship init bash)"
+    elif [ -r ~/.bash/liquidprompt/liquidprompt ]; then
+        [[ $- == *i* ]]   &&   . ~/.bash/liquidprompt/liquidprompt
+    fi
+fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"

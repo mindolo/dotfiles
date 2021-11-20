@@ -7,9 +7,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax',
-Plug 'deoplete-plugins/deoplete-jedi'
+"Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
@@ -73,9 +73,9 @@ let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['autopep8', 'isort']}
 
 
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-let g:deoplete#enable_at_startup = 1
-call deoplete#initialize()
+"let g:deoplete#omni_patterns = {}
+"let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+"let g:deoplete#enable_at_startup = 1
+"call deoplete#initialize()
 let g:airline#extensions#ale#enabled = 1
 

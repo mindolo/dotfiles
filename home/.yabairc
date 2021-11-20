@@ -17,10 +17,16 @@ yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          autoraise
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               on
-yabai -m config window_opacity               on
-yabai -m config window_opacity_duration      0.0
-yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.95
+yabai -m config window_opacity               off
+#yabai -m config window_opacity_duration      0.0
+#yabai -m config active_window_opacity        1.0
+#yabai -m config normal_window_opacity        0.85
+
+yabai -m config window_border on
+yabai -m config window_border_width 1
+yabai -m config active_window_border_color 0xff70a4ea
+yabai -m config normal_window_border_color 0xff1f244c
+
 
 yabai -m config window_shadow                off
 
@@ -45,10 +51,12 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^iStat Menus Status$" manage=off
+yabai -m rule --add app="^Stats$" manage=off
 
 #sticky windows
 yabai -m rule --add app="^iTerm2$" space=1
-yabai -m rule --add app="^iTerm2$" title="^personal_irc$" space=2
+#yabai -m rule --add app="^iTerm2$" title="^personal_irc$" space=2
+yabai -m rule --add app="^kitty$" space=2
 yabai -m rule --add app="^Chromium$" space=3
 yabai -m rule --add app="^Awsaml$" space=7
 yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" space=7
@@ -58,7 +66,3 @@ yabai -m rule --add app="^Slack$" space=8
 yabai -m rule --add app="^Google Chrome$" space=9
 
 echo "yabai configuration loaded.."
-
-# Starting limelight for window border
-killall limelight &> /dev/null
-limelight &> /dev/null &
