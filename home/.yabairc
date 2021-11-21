@@ -55,7 +55,6 @@ yabai -m rule --add app="^Stats$" manage=off
 
 #sticky windows
 yabai -m rule --add app="^iTerm2$" space=1
-#yabai -m rule --add app="^iTerm2$" title="^personal_irc$" space=2
 yabai -m rule --add app="^kitty$" space=2
 yabai -m rule --add app="^Chromium$" space=3
 yabai -m rule --add app="^Awsaml$" space=7
@@ -64,5 +63,30 @@ yabai -m rule --add app="^Calendar$" space=12
 yabai -m rule --add app="^zoom\.us$" space=6
 yabai -m rule --add app="^Slack$" space=8
 yabai -m rule --add app="^Google Chrome$" space=9
+yabai -m rule --add app="^iTerm2$" space=1
+
+# labels
+yabai -m space 1 --label terminal
+yabai -m space 2 --label personal_irc
+yabai -m space 3 --label personal_web
+yabai -m space 4 --label misc_float
+yabai -m space 5 --label misc_bsp
+yabai -m space 6 --label conference
+yabai -m space 7 --label auth
+yabai -m space 8 --label work_irc
+yabai -m space 9 --label work_web
+yabai -m space 10 --label development
+yabai -m space 11 --label email
+yabai -m space 12 --label calendar
+
+# signals
+yabai -m signal --add event=space_changed \
+    action="set SHELL=/bin/sh && open -g \"xbar://app.xbarapp.com/refreshPlugin?path=001-yabai.365d.sh\""
+yabai -m signal --add event=window_resized \
+    action="set SHELL=/bin/sh && open -g \"xbar://app.xbarapp.com/refreshPlugin?path=001-yabai.365d.sh\""
+yabai -m signal --add event=window_focused \
+    action="set SHELL=/bin/sh && open -g \"xbar://app.xbarapp.com/refreshPlugin?path=001-yabai.365d.sh\""
+yabai -m signal --add event=application_activated \
+    action="set SHELL=/bin/sh && open -g \"xbar://app.xbarapp.com/refreshPlugin?path=001-yabai.365d.sh\""
 
 echo "yabai configuration loaded.."
